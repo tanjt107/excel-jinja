@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+    xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac xr xr2 xr3"
+    xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac"
+    xmlns:xr="http://schemas.microsoft.com/office/spreadsheetml/2014/revision"
+    xmlns:xr2="http://schemas.microsoft.com/office/spreadsheetml/2015/revision2"
+    xmlns:xr3="http://schemas.microsoft.com/office/spreadsheetml/2016/revision3" xr:uid="{7C287E2E-34B5-CF4E-A48F-77A4F9A9E9C2}">
+    <dimension ref="A1:B5"/>
+    <sheetViews>
+        <sheetView tabSelected="1" zoomScaleNormal="100" workbookViewId="0"/>
+    </sheetViews>
+    <sheetFormatPr baseColWidth="10" defaultRowHeight="16" x14ac:dyDescent="0.2"/>
+    <sheetData>
+        <row r="1" spans="1:2" ht="19" x14ac:dyDescent="0.2">
+            <c r="A1" s="2" t="s">
+                <v>0</v>
+            </c>
+            <c r="B1" s="2" t="s">
+                <v>2</v>
+            </c>
+        </row>
+{% for index, data in df.iterrows() %}        
+        <row r="{{ index + 2 }}" spans="1:2" x14ac:dyDescent="0.2">
+            <c r="A{{ index + 2 }}" s="1">
+                <v>{{ data["date"] }}</v>
+            </c>
+            <c r="B{{ index + 2 }}">
+                <v>{{ data["value"] }}</v>
+            </c>
+        </row>
+{% endfor %}
+        <row r="{{ df|length + 3 }}" spans="1:2" x14ac:dyDescent="0.2">
+            <c r="A{{ df|length + 3 }}" t="s">
+                <v>1</v>
+            </c>
+            <c r="B{{ df|length + 3 }}" s="1">
+                <v>{{ today }}</v>
+            </c>
+        </row>
+    </sheetData>
+    <pageMargins left="0.7" right="0.7" top="0.75" bottom="0.75" header="0.3" footer="0.3"/>
+    <pageSetup paperSize="9" orientation="portrait" horizontalDpi="0" verticalDpi="0"/>
+</worksheet>
